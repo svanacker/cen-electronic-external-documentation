@@ -1,0 +1,244 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>RLY08 I2C Mode</title>
+
+<meta http-equiv="Content-Language" content="en-gb">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta content="Microsoft FrontPage 4.0" name="GENERATOR">
+<meta content="FrontPage.Editor.Document" name="ProgId"></head><body>
+<p align="center"><font face="Times New Roman"><font size="6"><span style="background-color: rgb(255, 255, 0);">&nbsp;RLY08 -&nbsp; 8
+Relay Outputs&nbsp;</span></font><b><font size="5"><br>
+</font></b><font size="4">Technical Documentation</font></font></p>
+<p align="center"><font size="4"><b>I2C mode<br>
+</b></font>For serial mode <a href="http://www.robot-electronics.co.uk/htm/rly08ser.htm">click
+here</a></p>
+<p align="left"><b><font face="Times New Roman">Connections</font></b></p>
+<p align="center"><img src="rly08i2c_fichiers/rly08pin.jpg" border="0" height="330" width="475"></p>
+<p align="center">&nbsp;</p>
+<p align="left"><font face="Times New Roman"><b><font size="3">I2C Mode selection</font></b><br>
+I2C operation is activated when the mode pin is left open circuit.</font></p>
+<p align="left"><font face="Times New Roman"><b><u><br></u><font size="4">I2C Operation<br></font>I2C 
+Bus<br></b>The RLY08 is located on the I2C bus at a factory default address of
+0X70.&nbsp;The SCL and SDA lines should have pull-up resistors on them somewhere 
+on the bus. You only require 1 pair of resistors for the whole I2C bus, not 
+specifically for the RLY08. They are normally on the master controller and you 
+may already have them. If not, anything between 1k8 and 10k should work. I 
+recommend 1k8 for best noise immunity.&nbsp;</font></p>
+<p><font face="Times New Roman"><b>RLY08 register set<br></b>The RLY08 has only
+two registers, register 0 and acts as a dual purpose
+register. When written to it is the command register where all of the instructions 
+from the commands section should be sent. When read it returns the software
+version.&nbsp;<br>
+Register 1 is the relay register, when written to it allows the
+user to change all eight relay positions at once with a single byte.
+When the register is read it provides the current positions of the relays. If
+all relays are powered the register would contain 255 (1111 1111), all relays in
+the un-powered state would result in 0 (0000 0000)<br></font></p>
+<p align="center">
+<font size="4">
+<b>I2C register set</b></font></p>
+<div align="center">
+<center>
+<table bgcolor="#ccffcc" border="1" cellpadding="2" cellspacing="0" width="300">
+  <tbody>
+  <tr>
+    <td align="center" bgcolor="#66ffff"><font face="Times New Roman">register</font></td>
+    <td align="center" bgcolor="#66ffff">
+      <p align="center"><font face="Times New Roman">Read</font> </p></td>
+    <td align="center" bgcolor="#66ffff"><font face="Times New Roman">Write</font> </td></tr>
+  <tr>
+    <td align="center" bgcolor="#ffff00"><font face="Times New Roman">0</font></td>
+    <td align="center"><font face="Times New Roman">Software version</font></td>
+    <td align="center"><font face="Times New Roman">Command register</font></td></tr>
+  <tr>
+    <td align="center" bgcolor="#ffff00"><font face="Times New Roman">1</font></td>
+    <td align="center"><font face="Times New Roman">Relay states</font></td>
+    <td align="center"><font face="Times New Roman">Relay states</font></td></tr>
+  </tbody></table></center></div>
+<p align="center"><b><font face="Times New Roman" size="4">Commands for I2C</font></b></p>
+<div align="center">
+<center>
+<table bgcolor="#ccffcc" border="1" cellpadding="2" cellspacing="0" width="300">
+  <tbody>
+  <tr>
+    <td align="center" bgcolor="#66ffff" width="46"><font face="Times New Roman">decimal</font></td>
+    <td align="center" bgcolor="#66ffff" width="47"><font face="Times New Roman">hex</font></td>
+    <td align="center" bgcolor="#66ffff" width="158">
+      <p align="center"><font face="Times New Roman">command</font></p></td>
+  </tr>
+  <tr>
+    <td align="center" bgcolor="#ffff00" width="46"><font face="Times New Roman">100</font></td>
+    <td align="center" bgcolor="#ffff00" width="47"><font face="Times New Roman">0x64</font></td>
+    <td align="center" width="158"><font face="Times New Roman">All relays on</font></td>
+  </tr>
+  <tr>
+    <td align="center" bgcolor="#ffff00" width="46"><font face="Times New Roman">101</font></td>
+    <td align="center" bgcolor="#ffff00" width="47"><font face="Times New Roman">0x65</font></td>
+    <td align="center" width="158"><font face="Times New Roman">Turn relay 1 on</font></td>
+  </tr>
+  <tr>
+    <td align="center" bgcolor="#ffff00" width="46"><font face="Times New Roman">102</font></td>
+    <td align="center" bgcolor="#ffff00" width="47"><font face="Times New Roman">0x66</font></td>
+    <td align="center" width="158"><font face="Times New Roman">Turn relay 2 on</font></td>
+  </tr>
+  <tr>
+    <td align="center" bgcolor="#ffff00" width="46"><font face="Times New Roman">103</font></td>
+    <td align="center" bgcolor="#ffff00" width="47"><font face="Times New Roman">0x67</font></td>
+    <td align="center" width="158"><font face="Times New Roman">Turn relay 3 on</font></td>
+  </tr>
+  <tr>
+    <td align="center" bgcolor="#ffff00" width="46"><font face="Times New Roman">104</font></td>
+    <td align="center" bgcolor="#ffff00" width="47"><font face="Times New Roman">0x68</font></td>
+    <td align="center" width="158"><font face="Times New Roman">Turn relay 4 on</font></td>
+  </tr>
+  <tr>
+    <td align="center" bgcolor="#ffff00" width="46"><font face="Times New Roman">105</font></td>
+    <td align="center" bgcolor="#ffff00" width="47"><font face="Times New Roman">0x69</font></td>
+    <td align="center" width="158"><font face="Times New Roman">Turn relay 5 on</font></td>
+  </tr>
+  <tr>
+    <td align="center" bgcolor="#ffff00" width="46"><font face="Times New Roman">106</font></td>
+    <td align="center" bgcolor="#ffff00" width="47"><font face="Times New Roman">0x6A</font></td>
+    <td align="center" width="158"><font face="Times New Roman">Turn relay 6 on</font></td>
+  </tr>
+  <tr>
+    <td align="center" bgcolor="#ffff00" width="46"><font face="Times New Roman">107</font></td>
+    <td align="center" bgcolor="#ffff00" width="47"><font face="Times New Roman">0x6B</font></td>
+    <td align="center" width="158"><font face="Times New Roman">Turn relay 7 on</font></td>
+  </tr>
+  <tr>
+    <td align="center" bgcolor="#ffff00" width="46"><font face="Times New Roman">108</font></td>
+    <td align="center" bgcolor="#ffff00" width="47"><font face="Times New Roman">0x6C</font></td>
+    <td align="center" width="158"><font face="Times New Roman">Turn relay 8 on</font> </td>
+  </tr>
+  <tr>
+    <td align="center" bgcolor="#ffff00" width="46"><font face="Times New Roman">110</font></td>
+    <td align="center" bgcolor="#ffff00" width="47"><font face="Times New Roman">0x6E</font></td>
+    <td align="center" nowrap="nowrap" width="158"><font face="Times New Roman">All relays
+      off</font> </td>
+  </tr>
+  <tr>
+    <td align="center" bgcolor="#ffff00" width="46"><font face="Times New Roman">111</font></td>
+    <td align="center" bgcolor="#ffff00" width="47"><font face="Times New Roman">0x70</font></td>
+    <td align="center" width="158"><font face="Times New Roman">Turn relay 1 off</font></td>
+  </tr>
+  <tr>
+    <td align="center" bgcolor="#ffff00" width="46"><font face="Times New Roman">112</font></td>
+    <td align="center" bgcolor="#ffff00" width="47"><font face="Times New Roman">0x71</font></td>
+    <td align="center" width="158"><font face="Times New Roman">Turn relay 2 off</font></td>
+  </tr>
+  <tr>
+    <td align="center" bgcolor="#ffff00" width="46"><font face="Times New Roman">113</font></td>
+    <td align="center" bgcolor="#ffff00" width="47"><font face="Times New Roman">0x72</font></td>
+    <td align="center" width="158"><font face="Times New Roman">Turn relay 3 off</font></td>
+  </tr>
+  <tr>
+    <td align="center" bgcolor="#ffff00" width="46"><font face="Times New Roman">114</font></td>
+    <td align="center" bgcolor="#ffff00" width="47"><font face="Times New Roman">0x73</font></td>
+    <td align="center" width="158"><font face="Times New Roman">Turn relay 4 off</font></td>
+  </tr>
+  <tr>
+    <td align="center" bgcolor="#ffff00" width="46"><font face="Times New Roman">115</font></td>
+    <td align="center" bgcolor="#ffff00" width="47"><font face="Times New Roman">0x74</font></td>
+    <td align="center" width="158"><font face="Times New Roman">Turn relay 5 off</font></td>
+  </tr>
+  <tr>
+    <td align="center" bgcolor="#ffff00" width="46"><font face="Times New Roman">116</font></td>
+    <td align="center" bgcolor="#ffff00" width="47"><font face="Times New Roman">0x75</font></td>
+    <td align="center" width="158"><font face="Times New Roman">Turn relay 6 off</font></td>
+  </tr>
+  <tr>
+    <td align="center" bgcolor="#ffff00" width="46"><font face="Times New Roman">117</font></td>
+    <td align="center" bgcolor="#ffff00" width="47"><font face="Times New Roman">0x76</font></td>
+    <td align="center" width="158"><font face="Times New Roman">Turn relay 7 off</font></td>
+  </tr>
+  <tr>
+    <td align="center" bgcolor="#ffff00" width="46"><font face="Times New Roman">118</font></td>
+    <td align="center" bgcolor="#ffff00" width="47"><font face="Times New Roman">0x77</font></td>
+    <td align="center" width="158"><font face="Times New Roman">Turn relay 8 off</font></td>
+  </tr>
+  </tbody></table></center></div>
+<p>&nbsp;</p>
+<p align="left"><b><a name="Address"></a>Changing the RLY08 Address</b><br>
+To change the I2C address of the RLY08 you must have only one module on the bus.
+Write the 3 sequence commands in the correct order followed by the address.
+Example; to change the address of a RLY08 currently at 0x70 (the default shipped
+address) to 0x7A, write the following to address 0x70; (0xA0, 0xAA, 0xA5, 0x7A
+). These commands must be sent in the correct sequence to change the I2C
+address, additionally, No other command may be issued in the middle of the
+sequence. The sequence must be sent to the command register at location 0, which
+means 4 separate write transactions on the I2C bus. When done, you should label
+the module with its address, however if you do forget, just power it up without
+sending any commands. The RLY08 will flash its address out on the LED. One long
+flash followed by a number of shorter flashes indicating its address. The
+flashing is terminated immediately on sending a command to the RLY08 and then
+becomes a power LED.</p>
+<div align="center">
+  <center>
+  <table bgcolor="#ffffcc" border="1" cellpadding="0" cellspacing="0" width="30%">
+    <tbody>
+      <tr>
+        <td colspan="2" align="center" bgcolor="#66ffff" width="50%">Address</td>
+        <td rowspan="2" align="center" bgcolor="#66ffff" width="25%">Long Flash</td>
+        <td rowspan="2" align="center" bgcolor="#66ffff" width="25%">Short
+          flashes</td>
+      </tr>
+      <tr>
+        <td align="center" bgcolor="#66ffff" width="25%">Decimal</td>
+        <td align="center" bgcolor="#66ffff" width="25%">Hex</td>
+      </tr>
+      <tr>
+        <td align="center" bgcolor="#ffff00" width="25%">112</td>
+        <td align="center" bgcolor="#ffff00" width="25%">0x70</td>
+        <td align="center" bgcolor="#ccffcc" width="25%">1</td>
+        <td align="center" bgcolor="#ccffcc" width="25%">0</td>
+      </tr>
+      <tr>
+        <td align="center" bgcolor="#ffff00" width="25%">114</td>
+        <td align="center" bgcolor="#ffff00" width="25%">0x72</td>
+        <td align="center" bgcolor="#ccffcc" width="25%">1</td>
+        <td align="center" bgcolor="#ccffcc" width="25%">1</td>
+      </tr>
+      <tr>
+        <td align="center" bgcolor="#ffff00" width="25%">116</td>
+        <td align="center" bgcolor="#ffff00" width="25%">0x74</td>
+        <td align="center" bgcolor="#ccffcc" width="25%">1</td>
+        <td align="center" bgcolor="#ccffcc" width="25%">2</td>
+      </tr>
+      <tr>
+        <td align="center" bgcolor="#ffff00" width="25%">118</td>
+        <td align="center" bgcolor="#ffff00" width="25%">0x76</td>
+        <td align="center" bgcolor="#ccffcc" width="25%">1</td>
+        <td align="center" bgcolor="#ccffcc" width="25%">3</td>
+      </tr>
+      <tr>
+        <td align="center" bgcolor="#ffff00" width="25%">120</td>
+        <td align="center" bgcolor="#ffff00" width="25%">0x78</td>
+        <td align="center" bgcolor="#ccffcc" width="25%">1</td>
+        <td align="center" bgcolor="#ccffcc" width="25%">4</td>
+      </tr>
+      <tr>
+        <td align="center" bgcolor="#ffff00" width="25%">122</td>
+        <td align="center" bgcolor="#ffff00" width="25%">0x7A</td>
+        <td align="center" bgcolor="#ccffcc" width="25%">1</td>
+        <td align="center" bgcolor="#ccffcc" width="25%">5</td>
+      </tr>
+      <tr>
+        <td align="center" bgcolor="#ffff00" width="25%">124</td>
+        <td align="center" bgcolor="#ffff00" width="25%">0x7C</td>
+        <td align="center" bgcolor="#ccffcc" width="25%">1</td>
+        <td align="center" bgcolor="#ccffcc" width="25%">6</td>
+      </tr>
+      <tr>
+        <td align="center" bgcolor="#ffff00" width="25%">126</td>
+        <td align="center" bgcolor="#ffff00" width="25%">0x7E</td>
+        <td align="center" bgcolor="#ccffcc" width="25%">1</td>
+        <td align="center" bgcolor="#ccffcc" width="25%">7</td>
+      </tr>
+    </tbody>
+  </table>
+  </center>
+</div>
+<p align="left">Take care not to set more than one module to the same address,
+there will be a bus collision and very unpredictable results.</p>
+
+</body></html>
